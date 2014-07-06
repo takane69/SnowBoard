@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 		_transform.rotation = q;
 
 //		_rigidbody.velocity = _rigidbody.velocity + _transform.forward;
+		_rigidbody.velocity += _transform.forward / 2;										//加速度を半分にした
+		Debug.Log(_rigidbody.velocity);
 	}
 
 	void FixedUpdate ()
