@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+	public Transform _mesh;
 
 	Rigidbody _rigidbody;
 	Transform _transform;
@@ -15,11 +16,15 @@ public class PlayerController : MonoBehaviour
 
 	void Update ()
 	{
+		float hAxis = Input.GetAxis("Horizontal");
+
 		Quaternion q = new Quaternion(_transform.rotation.x ,
-		                              _transform.rotation.y + Input.GetAxis("Horizontal") * Time.deltaTime ,
+		                              _transform.rotation.y + hAxis * Time.deltaTime ,
 		                              _transform.rotation.z , _transform.rotation.w);
 
 		_transform.rotation = q;
+
+		_mesh.localRotation = Quaternion.Euler(0, 0, hAxis * -10f);
 
 //		_rigidbody.velocity = _rigidbody.velocity + _transform.forward;
 //		_rigidbody.velocity += _transform.forward / 2;										//加速度を半分にした
